@@ -1,0 +1,10 @@
+slides: https://docs.google.com/presentation/d/e/2PACX-1vTx1PX_QmZSc74jIEQU7hF-VrRwiy_s49eello3uU25yrnef13iI6ebQwRYNZDMv9My0cC6JRu2Sx4O/pub?start=false&loop=false&delayms=3000&slide=id.p1
+
+forEach -- The only higher order array method that does not return anything. performs an action for each item in the array
+find -- returns an item in the array or undefined
+map -- returns an array of the same length
+filter -- returns an array of the same length or shorter
+sort -- returns an array of the same length sorted.
+reduce -- returns whatever you want
+... -- spread operator. 'spreads' your data. //objects and arrays
+... -- rest operator

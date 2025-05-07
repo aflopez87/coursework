@@ -1,0 +1,67 @@
+header{
+    background-color: orange;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+
+.cold{
+    background-color: lightblue;
+    color: rgb(15, 0, 232);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.pantry{
+    background-color: lightsalmon;
+    color:rgb(152, 41, 0);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.cold, .pantry{
+    width: 25%;
+}
+
+
+.header2{
+    background-color: orange;
+    text-align: center;
+    border-radius: 5px;
+    border: 5px dashed rgb(122, 124, 255);
+    width: 50%;
+    margin: 10px;
+}
+
+img{
+    height: 50vh; 
+    align-items: end;
+    padding: 20px;
+}
+
+
+.list{
+    
+    background-color: lightgray;
+    padding: 10px;
+}
+
+.flexbox{
+    display: flex;
+}
+
+/* div{
+    border: 1px solid black;
+} */
+/* .grocery{
+    border:1px solid black;
+    display: flex;
+    flex: 1;
+} */
+/* .flexbox{
+    flex: 1;
+} */
