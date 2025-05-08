@@ -1,0 +1,31 @@
+Slides : https://docs.google.com/presentation/d/e/2PACX-1vQtEtGEbQc8HuU3KbupjEg6gsXgw12B2aQMtufpTNYb3j9-bTtN0tg4R5G28dVSEmkySCj3B5VNDj5n/pub?start=false&loop=false&delayms=3000&slide=id.p1
+
+How do I...
+
+methods
+add children elements - parentElement.appendChild(childElement)
+add a class -  element.classList.add("className")
+remove a class -  element.classList.remove("className")
+toggle a class on and off -  element.classList.toggle("className")
+get a specific a attribute value- element.getAttribute("attributeName")
+set a specific a attribute value- element.getAttribute("attributeName", attributeValue)
+get child elements by class name - parentElement.getElementsByClassName("className") 
+get ALL elements by class name - document.getElementsByClassName("className") 
+get child elements by tag name - parentElement.getElementsByTagName("tag") 
+get ALL elements by tag name - document.getElementsByTagName("tag") 
+get a child element by id - parentElement.getElementById("id")
+get an element by id - document.getElementById("id") 
+get a child element  (by id, class, or tag) - parentElement.querySelector(#id OR .class OR tag)
+get any element  (by id, class, or tag) - document.querySelector(#id OR .class OR tag)
+get all children elements  (by id, class, or tag) - parentElement.querySelectorAll(#id OR .class OR tag)
+get all elements  (by id, class, or tag) - document.querySelectorAll(#id OR .class OR tag)
+remove an element from the document - element.remove()
+add an element to the document - document.creteElement("tagToCreate")
+replace a childElement - element.replaceChild()
+
+properties
+look at all the children of an element - parentElement.children
+look at an elements classes - element.classList
+add, remove, or view class - element.className
+view or add text - element.innerText OR element.innerHTML OR element.textContent
+view an elements parent - element.parentElement

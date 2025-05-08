@@ -1,0 +1,40 @@
+const foods = [
+    {
+        name:"strawberries", 
+        type:"fruit"
+    },
+    {
+        name:"cheese", 
+        type:"dairy"
+    },
+    {
+        name:"bananas", 
+        type:"fruit"
+    },
+    {
+        name:"steak", 
+        type:"meat"
+    },
+    {
+        name:"apples", 
+        type:"fruit"
+    },
+    {
+        name:"shrimp", 
+        type:"meat"
+    },
+    {
+        name:"milk", 
+        type:"dairy"
+    },
+    {
+        name:"chicken", 
+        type:"meat"
+    },    
+    {
+        name:"yogurt", 
+        type:"dairy"
+    },
+]
+
+//write code that prints just the names of only the fruits to the console.
