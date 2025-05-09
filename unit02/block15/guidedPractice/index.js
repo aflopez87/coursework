@@ -43,10 +43,10 @@ const makeQuote=()=>{
 function makeQuotes(){
     const quoteArr = []
     for(let i=0; i<20;i++){
-    const newQUote = makeQUote()
+    const newQuote = makeQuote()
     quoteArr.push(newQuote)    
     }
-returnQuoteArr
+return quoteArr
 }
 const quoteState = makeQuotes()
 console.log(quoteState)
