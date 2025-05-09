@@ -31,12 +31,12 @@ function makeQuote() {
 const makeQuote=()=>{
     const quote={}
     // get a randomNum for the authorArray
-    const randomAuthNum = Math.floor(Math.random()*AUTHORS.length-1)
-    const randomAuthor = AUTHORS[randomAuthNum]
-    quote.author = randomAuthor
-    const randomSentNum = Math.floor(Math.random()*SENTENCES.length-1)
-    const randomSentence = SENTENCES[randomSentNum]
-    quote.sentence = randomSentence
+    const randomAuthNum = Math.floor(Math.random()*AUTHORS.length-1);
+    const randomAuthor = AUTHORS[randomAuthNum];
+    quote.author = randomAuthor;
+    const randomSentNum = Math.floor(Math.random()*SENTENCES.length-1);
+    const randomSentence = SENTENCES[randomSentNum];
+    quote.sentence = randomSentence;
     return quote
 }
 

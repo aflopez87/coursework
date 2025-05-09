@@ -8,7 +8,7 @@ div.textContent = "This is a Div"
 body.append(div)
 div.style.backgroundColor = "blue"
 
-const foods = [
+const foodState = [
     {
         name:"strawberries", 
         type:"fruit"
