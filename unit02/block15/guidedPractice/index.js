@@ -23,72 +23,10 @@ const AUTHORS = [
 
 // === State ===
 /** @returns {Quote} a quote with a random sentence and random author */
-function makeQuote() {
+// function makeQuote() {
   // TODO
-}
+// }
 
-// <______________________________In class code
-const makeQuote=()=>{
-    const quote={}
-    // get a randomNum for the authorArray
-    const randomAuthNum = Math.floor(Math.random()*AUTHORS.length-1);
-    const randomAuthor = AUTHORS[randomAuthNum];
-    quote.author = randomAuthor;
-    const randomSentNum = Math.floor(Math.random()*SENTENCES.length-1);
-    const randomSentence = SENTENCES[randomSentNum];
-    quote.sentence = randomSentence;
-    return quote
-}
-
-function makeQuotes(){
-    const quoteArr = []
-    for(let i=0; i<20;i++){
-    const newQuote = makeQuote()
-    quoteArr.push(newQuote)    
-    }
-return quoteArr
-}
-const quoteState = makeQuotes()
-console.log(quoteState)
-
-// create a single quote
-const createQuote = (quote)=>{
-    // create elements
-    const figure = document.createElement("figure")
-    const blockQuote = document.createElement("blockQuote")
-    const figCaption = document.createElement("figCaption")
-    // add text/style
-    figure.className = "quote"
-    figure.style.border = "1px solid"
-    figure.style.margin = "5px"
-    blockQuote.textContent = quote.sentence
-    figCaption.textContent = quote.author
-    // add children to parent
-    figure.appendChild(blockQuote)
-    figure.appendChild(figCaption)
-    return figure
-}
-
-function createQuotes (){
-    const quoteArr = quoteState.map((quote)=>{return createQuote(quote)})
-    quoteArr.forEach((quoteObject)=>{
-        quoteCOntainer.appendChild(quoteObject)
-    })
-
-}
-function init(){
-    createQuotes()
-}
-const heading = document.createElement("h1")
-heading.textContent = "theseare the Quotes"
-
-init()
-
-console.log(createQuote(quoteState[0]))
-
-
-
-// <______________________________In class code
 const quotes = undefined; // TODO
 
 // === Components ===
@@ -114,4 +52,72 @@ function render() {
   `;
   $app.querySelector("QuoteCards").replaceWith(QuoteCards(quotes));
 }
-render();
+// render();
+
+
+
+// <______________________________In-class code
+
+
+const makeQuote=()=>{
+    const quote ={}
+    //get a randomNum for the authorArray
+    const randomAuthNum = Math.floor(Math.random()*AUTHORS.length)
+    const randomAuthor = AUTHORS[randomAuthNum]
+    quote.author = randomAuthor
+    const randomSentNum = Math.floor(Math.random()*SENTENCES.length)
+    const randomSentence = SENTENCES[randomSentNum]
+    quote.sentence = randomSentence
+    return quote
+}
+
+function makeQuotes(){
+    const quoteArr = []
+    for(let i=0;i<20;i++){
+        const newQuote = makeQuote()
+        quoteArr.push(newQuote)
+    }
+    return quoteArr
+}
+const quoteState = makeQuotes()
+
+console.log(quoteState)
+
+//create a single quote
+const createQuote = (quote)=>{
+    //create elements
+    const figure = document.createElement("figure")
+    const blockQuote = document.createElement("blockquote")
+    const figCaption = document.createElement("figcaption")
+    //add text/style
+    figure.className = "quote"
+    figure.style.border = "1px solid"
+    figure.style.margin = "5px"
+    blockQuote.textContent = quote.sentence
+    figCaption.textContent = quote.author
+    //add children to parent
+    figure.appendChild(blockQuote)
+    figure.appendChild(figCaption)
+
+    return figure
+}
+const quoteContainer = document.getElementById("quotes")
+
+function createQuotes(){
+    const quoteArr = quoteState.map((quote)=>{return createQuote(quote)})
+    quoteArr.forEach((quoteObject)=>{
+        quoteContainer.appendChild(quoteObject)
+    })
+}
+
+function init(){
+    createQuotes()
+}
+
+const heading = document.createElement("h1")
+heading.textContent = "These are the Quotes"
+quoteContainer.prepend(heading)
+init()
+//console.log(createQuote(quoteState[0]))
+
+// <______________________________In-class code
