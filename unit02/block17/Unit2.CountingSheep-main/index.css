@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  gap: 1ch;
+
+  padding: 1rem;
+  height: 100vh;
+}
+
+button {
+  min-width: 4rem;
+}
+
+main {
+  background: #beebbe;
+  border-radius: 1rem;
+  padding: 1rem;
+
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.fence {
+  display: flex;
+  align-items: center;
+}
+
+img {
+  width: 100%;
+}
+
+.pasture {
+  font-size: 3rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 4rem);
+  grid-auto-rows: 4rem;
+}
+
+.sheep {
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sheep.waiting:hover {
+  cursor: pointer;
+  font-style: italic;
+}
