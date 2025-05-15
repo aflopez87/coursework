@@ -13,7 +13,6 @@ let count = 0;
  * @param {number} n - the number of sheep to add
  */
 function addSheep(n) {
-  // TODO
   start += n;
   render();
 }
@@ -23,13 +22,13 @@ function addSheep(n) {
  * but only if there is at least one sheep to move.
  */
 function moveSheep() {
-  // TODO
-  if (start > 0) {
-    start--;
-    target++;
-    count++;
-    render();
-  }
+  if (start <= 0) return;
+
+  start -= 1;
+  target += 1;
+  count += 1;
+
+  render();
 }
 
 // === Components ===
@@ -43,7 +42,14 @@ function SheepForm() {
     </label>
     <button>+</button>
   `;
-  // TODO: add a `submit` event listener
+  $form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const data = new FormData($form);
+    const count = data.get("count");
+    addSheep(Number(count));
+  });
+  return $form;
 }
 
 /**
@@ -59,7 +65,7 @@ function Sheep(waiting) {
 
   if (waiting) {
     $sheep.classList.add("waiting");
-    // TODO: add a `click` event listener
+    $sheep.addEventListener("click", moveSheep);
   }
 
   return $sheep;
@@ -67,7 +73,9 @@ function Sheep(waiting) {
 
 /** Message that indicates how many sheep have been counted so far */
 function SheepCount() {
-  // TODO
+  const $p = document.createElement("p");
+  $p.textContent = `Sheep counted: ${count}`;
+  return $p;
 }
 
 /**
