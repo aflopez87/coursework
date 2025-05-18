@@ -9,7 +9,7 @@ let displayedArtist
 //get all
 const getArtists = async ()=>{
     try{
-        //fetsch from the API with base Url+ resource
+        //fetch from the API with base Url+ resource
         const response = await fetch(baseUrl+'/artists')
         //turn the data from the API in th js we can use
         const data = await response.json()
