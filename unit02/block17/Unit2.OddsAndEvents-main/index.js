@@ -107,7 +107,7 @@ sort1Button.addEventListener("click", (e)=>{
     // select the first value from the bank array
     const singleSort = bankArr[0];
     // if the first value of the bankArr divided by 2 does not produce a whole number,
-    if (singleSort & 2 !== 0){
+    if (singleSort % 2 !== 0){
         //push value to the oddsArr
         oddsArr.push(singleSort)
         renderSingleSortOdd()
@@ -128,7 +128,7 @@ function renderSingleSortOdd(){
     oddsDiv.innerHTML = "";
     bankArr.shift();
     bankDiv.removeChild(bankDiv.firstChild);
-    renderBank()
+    renderBank();
     // for each number in the array, create a ptag for the oddsDiv
     oddsArr.forEach (num=>{
         // create a new ptag for each element
@@ -144,9 +144,9 @@ function renderSingleSortOdd(){
 function renderSingleSortEven(){
     // clear the odds div
     evensDiv.innerHTML = "";
-    bankArr.shift;
-    bankDiv.removeChild(bankDiv.FirstChild);
-    renderBank()
+    bankArr.shift();
+    bankDiv.removeChild(bankDiv.firstChild);
+    renderBank();
     // for each number in the array, create a ptag for the evensDiv
     evensArr.forEach (num=>{
         // create a new ptag for each element
