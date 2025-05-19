@@ -33,7 +33,7 @@ body.classList.add("mandy-body")
 //add a click event that opens a form with a text box and a submit button
 //add another click event to the submit button that checks if the user text is equal to the species of the animal.
 //if the values are equal change the button text to the name of the species, if it is incorrect, change the button text to try again.
-//don't forget to add logic to the submit event that gets rid of the form that pooped up!
+//don't forget to add logic to the submit event that gets rid of the form that popped up!
 //extra extra practice (but not really...)
 //create an array of animals like Mandy, give each one a name, a species, and an image from unsplash(or whereever you want)
 //display them all!
