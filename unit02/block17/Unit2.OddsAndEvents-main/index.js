@@ -101,7 +101,9 @@ function renderBank() {
         });
 }
 
+// Select the sort1 button
 const sort1Button = document.querySelector("#sort1")
+// clicking the sort1 button will remove the first value from the bank and check if odd or even
 sort1Button.addEventListener("click", (e)=>{
     e.preventDefault()
     // prevents running if bankArr is empty
@@ -118,7 +120,6 @@ sort1Button.addEventListener("click", (e)=>{
         evensArr.push(singleSort);
         renderSingleSortEven();
     }
-
 })
 
 
@@ -127,6 +128,7 @@ sort1Button.addEventListener("click", (e)=>{
 const oddsArr = [];
 const evensArr = [];
 
+// create a function that removes the first value from bankArr and removes elements from the bankDiv to place in odd array
 function renderSingleSortOdd(){
     // clear the odds div
     oddsDiv.innerHTML = "";
@@ -144,7 +146,7 @@ function renderSingleSortOdd(){
         oddsDiv.appendChild(p);
     })
 } 
-
+// create a function that removes the first value from bankArr and removes elements from the bankDiv to place in even array
 function renderSingleSortEven(){
     // clear the odds div
     evensDiv.innerHTML = "";
@@ -169,16 +171,45 @@ sortAllButton.addEventListener("click", (sortAll)=>{
     sortAll.preventDefault()
     // prevents running if bankArr is empty
     if (bankArr.length === 0) return;
-    
-    
-    for (i=0; i<bankArr.length; i++){
-    
-        if (bankArr[i] % 2 !== 0){
+    // for loop to iterate through bank array 
+    while (bankArr.length > 0){
+        const num = bankArr.shift()
+        if (num % 2 !== 0){
         //push value to the oddsArr
-        oddsArr.push(bankArr[i]);
-    }else{
+        oddsArr.push(num);
+        }else{
         //push value to the evensArr
-        evensArr.push(bankArr[i]);
+        evensArr.push(num);
     }
     }
-})
+    // re-render the bank after removing values
+    renderBank();
+    // render the oddsDiv
+    // empty oddsDiv before adding values
+    oddsDiv.innerHTML = "";
+    // select each ptag in the odds array
+    oddsArr.forEach(num =>{
+        // create the ptag for each odd value
+        const p = document.createElement("p");
+        // add content and style
+        p.textContent = num;
+        p.style.padding = "5px"
+        // place ptag in the oddDiv container
+        oddsDiv.appendChild(p)
+    });
+
+    // render the evensDiv
+    // empty evensDiv before adding values
+    evensDiv.innerHTML = "";
+    // select each ptag in the evens array
+    evensArr.forEach(num=>{
+        // create the ptag for each odd value
+        const p = document.createElement("p");
+        // add content and style
+        p.textContent = num;
+        p.style.padding = "5px";
+        // place ptag in the evensDiv container
+        evensDiv.appendChild(p);
+    });
+
+});
