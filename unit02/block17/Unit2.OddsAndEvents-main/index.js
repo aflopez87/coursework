@@ -104,17 +104,21 @@ function renderBank() {
 const sort1Button = document.querySelector("#sort1")
 sort1Button.addEventListener("click", (e)=>{
     e.preventDefault()
+    // prevents running if bankArr is empty
+    if (bankArr.length === 0) return;
     // select the first value from the bank array
     const singleSort = bankArr[0];
-    // if the first value of the bankArr divided by 2 does not produce a whole number,
+    // if the first value of the bankArr divided by 2 does not produce a whole number
     if (singleSort % 2 !== 0){
         //push value to the oddsArr
-        oddsArr.push(singleSort)
-        renderSingleSortOdd()
+        oddsArr.push(singleSort);
+        renderSingleSortOdd();
     }else{
-        evensArr.push(singleSort)
-        renderSingleSortEven()
+        //push value to the evensArr
+        evensArr.push(singleSort);
+        renderSingleSortEven();
     }
+
 })
 
 
@@ -160,6 +164,21 @@ function renderSingleSortEven(){
 } 
 
 // sort all of the numbers in the bank to the Odds or Evens
-addEventListener("click", (sortAll)=>{
+const sortAllButton = document.querySelector("#sortall")
+sortAllButton.addEventListener("click", (sortAll)=>{
     sortAll.preventDefault()
+    // prevents running if bankArr is empty
+    if (bankArr.length === 0) return;
+    
+    
+    for (i=0; i<bankArr.length; i++){
+    
+        if (bankArr[i] % 2 !== 0){
+        //push value to the oddsArr
+        oddsArr.push(bankArr[i]);
+    }else{
+        //push value to the evensArr
+        evensArr.push(bankArr[i]);
+    }
+    }
 })

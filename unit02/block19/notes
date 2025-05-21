@@ -1,0 +1,7 @@
+C-R-U-D<-------
+CREATE. READ. UPDATE. DELETE
+CRUD -- HTTP method -- What it does --- sample endpoint
+READ -- GET method -- Looks at the data/displays it on the page --sample endpoint: /students endpoint : base_url/resource
+CREATE -- POST method -- Adds new data -- sample endpoint base_url/resource
+UPDATE -- Put method OR PATCH method
+DELETE -- DELETE method -- Deletes data

@@ -1,0 +1,9 @@
+.groceryHolder{
+    border: 1px solid;
+    margin: 5px;
+    width: 50%;
+}
+
+.qnty{
+    display: flex;
+}
