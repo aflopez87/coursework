@@ -8,7 +8,7 @@
 
 // === Constants ===
 const BASE = "https://fsa-crud-2aa9294fe819.herokuapp.com/api";
-const COHORT = "/2503-ftb-et-web-pt"; // Make sure to change this! *Changed
+const COHORT = "/2503"; // Make sure to change this!
 const RESOURCE = "/artists";
 const API = BASE + COHORT + RESOURCE;
 
@@ -18,24 +18,49 @@ let selectedArtist;
 
 /** Updates state with all artists from the API */
 async function getArtists() {
-  // TODO
+  try {
+    const response = await fetch(API);
+    const result = await response.json();
+    artists = result.data;
+    render();
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 /** Updates state with a single artist from the API */
 async function getArtist(id) {
-  // TODO
+  try {
+    const response = await fetch(API + "/" + id);
+    const result = await response.json();
+    selectedArtist = result.data;
+    render();
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 // === Components ===
 
 /** Artist name that shows more details about the artist when clicked */
 function ArtistListItem(artist) {
-  // TODO
+  const $li = document.createElement("li");
+  $li.innerHTML = `
+    <a href="#selected">${artist.name}</a>
+  `;
+  $li.addEventListener("click", () => getArtist(artist.id));
+  return $li;
 }
 
 /** A list of names of all artists */
 function ArtistList() {
-  // TODO
+  const $ul = document.createElement("ul");
+  $ul.classList.add("lineup");
+
+  const $artists = artists.map(ArtistListItem);
+  $ul.replaceChildren(...$artists);
+
+  return $ul;
 }
 
 /** Detailed information about the selected artist */
@@ -46,7 +71,16 @@ function ArtistDetails() {
     return $p;
   }
 
-  // TODO
+  const $artist = document.createElement("section");
+  $artist.classList.add("artist");
+  $artist.innerHTML = `
+    <h3>${selectedArtist.name} #${selectedArtist.id}</h3>
+    <figure>
+      <img alt=${selectedArtist.name} src=${selectedArtist.imageUrl} />
+    </figure>
+    <p>${selectedArtist.description}</p>
+  `;
+  return $artist;
 }
 
 // === Render ===
