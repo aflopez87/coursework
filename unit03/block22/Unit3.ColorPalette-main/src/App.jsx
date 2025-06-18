@@ -1,6 +1,5 @@
 import ColorJsx from "./ColorJsx";
-import {useState}from "react";
-
+import {useState} from 'react'
 const COLORS = [
   "red",
   "orange",
@@ -13,19 +12,16 @@ const COLORS = [
 ];
 
 export default function App() {
-  const [selectedColor, setSelectedColor] = useState();
+  const [selectedColor, setSelectedColor] = useState()
   return <main>
     <div className="highlighter">
-     <div className="handle"></div>
-      {selectedColor ?
-      <p>The selected color is </p>  
-    :
-    <p>Please Click a color!</p>
-    }
-     <div className={`tip ${selectedColor}`}></div>
-   </div>
+      <div className="handle">
+        {selectedColor ? <p>The selected color is {selectedColor}</p>:<p>Please Click a Color!</p>}
+      </div>
+      <div className={`tip ${selectedColor}`}></div>
+    </div>
     <div className="palette">
-    {COLORS.map(clr=><ColorJsx key = {clr} color = {clr} setSelectedColor = {setSelectedColor}/>)}
+      {COLORS.map(clr=><ColorJsx key ={clr} color = {clr} setSelectedColor ={setSelectedColor}/>)}
     </div>
   </main>;
 }

@@ -1,0 +1,15 @@
+https://docs.google.com/presentation/d/e/2PACX-1vSBssgm8ae2oeYt2yyoMd855OlRyOwC8GeDVBnwucNCnDkZlKsDw6gXyTGibq-xSyO5aeTx4RlJ3h1m/pub?start=false&loop=false&delayms=3000&slide=id.g21d2a55fb87_0_356
+
+Steps for creating React context (theme example)
+
+1. create a component called useTheme (useSomething, useData...) 
+2. create a variable called ThemeContext (SomethingContext, DataContext...)
+3. Create a ThemeProvider (SomethingProvider, DataProvider) component that will hold your data and logic
+4. add data and logic as you would to any other component
+5. Return <ThemeContext.Provider value ={{logic, functions}}></ThemeContext.Provider> from the provider component. add all the functions and data you want to use elsewhere...
+6. Export both ThemeContext and ThemeProvider(or whatever context and providers you created...)
+7. import the PROVDIER at the top most level of you app (you can put the provider around any component,however only the children of the wrapped components can access context value.)
+Steps for using Context 
+1. import ThemeContext (SomethingContext, DataContext...) and useContext into the component that needs context. 
+2. const contextValues = useContext(ThemeContext)
+all of your values can be accessed by using contextValues.valueName. you can also destructrue the object avoid using dot notation ie const {value1, value2,value3} = useContext(ThemeContext)

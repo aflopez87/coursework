@@ -1,0 +1,11 @@
+Slidex : https://docs.google.com/presentation/d/e/2PACX-1vRNyNeTpvWvNUZ8xhQJMkrqIWCp-ds-N9mY5LoY_zt1karGMbua0ww0lZcBjSqu8Sw9Wgay7Nqkpu3q/pub?start=false&loop=false&delayms=3000&slide=id.g21d2a55fb87_0_356
+
+parent component
+one component that shows all the characters:
+character list component :
+clickable character
+character details
+one component that lets us change the status of heros or villans
+hero/villian list
+character card with image,name, and status
+button that can change status
