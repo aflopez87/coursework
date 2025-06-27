@@ -1,12 +1,17 @@
 const body = document.querySelector("body");
 const apiUrl = 'https://fsa-crud-2aa9294fe819.herokuapp.com/api/2503-ftb-et-web-pt/artists'
+
+// === State ===
 const stateArtist = [];
+let artists;
+
+
 // a function that gets our data
 const retrieveArtist = async ()=>{
     // READ/GET
     const response = await fetch(apiUrl);
     const data = await response.json();
-    const artists = data.data;
+    artists = data.data;
     artists.forEach(artist=>{stateArtist.push(artist)});
     console.log(stateArtist)
 }
@@ -16,7 +21,7 @@ async function addArtist(){
     const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(artist)
+        body: JSON.stringify(artists)
     });
     const data = await response.json();
     const apiArtist = data.data;
