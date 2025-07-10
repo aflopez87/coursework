@@ -10,7 +10,7 @@ function ControlledForm() {
         username:"",
         password:"",
     })
-    //track inouts on the form
+    //track inputs on the form
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 

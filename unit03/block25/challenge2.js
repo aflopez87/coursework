@@ -20,5 +20,6 @@ console.log(biggestNumber(6948))
 // [6,4,9,8] -->9864
 
 
-// soliution using sort insteadd
+// solution using sort insteadd
 const arr2=num.toString().split('').sort((a,b)=>b-a)
+   
