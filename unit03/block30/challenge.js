@@ -48,33 +48,79 @@
 //         }
 //     }}
 
+// function rockPaperScissors(input1, input2){
+//     const output = input1-input2;
+// if (output === 0){
+//     console.log("draw")
+//     return 
+// }
+// if (output === 1 || output === -2) {
+//     console.log("player 1 wins")
+// }else{
+//     console.log("player 2 wins")
+// };
+// }
+// selection();
+
+// ==== Number input===
+// function selection () {
+//     let player1 = Number(prompt("Player 1, Please enter 1 for rock, 2 for paper, or 3 for scissors"));
+//     if (player1 !== 1 && player1 !==2 && player1 !==3){
+//         console.log("Please type 1 for rock, 2 for paper, or 3 for scissors")
+//         return
+//     }else{
+//         let player2 = Number(prompt("Player 2, Please enter 1 for rock, 2 for paper, or 3 for scissors"));
+//         if (player2 !== 1 && player2 !==2 && player2 !==3){
+//         console.log("Please type 1 for rock, 2 for paper, or 3 for scissors")
+//         }else{
+//             rockPaperScissors(player1, player2);
+//         }
+//     }}    
+
+// function rockPaperScissors(input1, input2){
+//     const output = input1-input2;
+// if (output === 0){
+//     console.log("draw")
+//     return 
+// }
+// if (output === 1 || output === -2) {
+//     console.log("player 1 wins")
+// }else{
+//     console.log("player 2 wins")
+// };
+// }
+
+// selection();
+
+
+// ===== alternate solution =====
+
 function selection () {
-    let player1 = Number(prompt("Player 1, Please enter 1 for rock, 2 for paper, or 3 for scissors"));
-    if (player1 !== 1 && player1 !==2 && player1 !==3){
-        console.log("Please type 1 for rock, 2 for paper, or 3 for scissors")
-        return
+    let player1 = prompt("Player 1, Please enter rock, paper, or scissors");
+    if (player1 !=="rock" && player1 !=="paper" && player1 !=="scissors"){
+   
+        return "Player 1, please type rock, paper, or scissors";
     }else{
-        let player2 = Number(prompt("Player 2, Please enter 1 for rock, 2 for paper, or 3 for scissors"));
-        if (player2 !== 1 && player2 !==2 && player2 !==3){
-        console.log("Please type 1 for rock, 2 for paper, or 3 for scissors")
+        let player2 = prompt("Player 2, Please enter rock, paper, or scissors");
+        if (player2 !== "rock" && player2 !=="paper" && player2 !=="scissors"){
+        return "Player 2, please type rock, paper, or scissors";
         }else{
-            rockPaperScissors(player1, player2);
+            return rockPaperScissors(player1, player2);
         }
-    }}    
+    }} 
 
-function rockPaperScissors(input1, input2){
-    const output = input1-input2;
-if (output === 0){
-    console.log("draw")
-    return 
-}
-if (output === 1 || output === -2) {
-    console.log("player 1 wins")
-}else{
-    console.log("player 2 wins")
-};
+function rockPaperScissors(p1, p2) {
+  const map = { rock : 1, paper : 2, scissors : 3 };
+  const result = map[p1] - map[p2];
+
+  if (result === 0) return "draw";
+  return (result === 1 || result === -2) ? "player 1 wins" : "player 2 wins";
+
+
 }
 
 
-
-selection();
+const game = document.createElement("p");
+const result = selection();
+game.innerText = result ? result : "No result (game cancelled or invalid input";
+document.body.appendChild(game);
