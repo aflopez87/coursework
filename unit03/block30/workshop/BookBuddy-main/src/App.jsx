@@ -10,6 +10,7 @@ export default function App() {
 
   return (
     <>
+      <h1 className="heading">Book-Buddy</h1>
       <nav>
         <Link to ="/">View All Books</Link>
         <Link to ="/users/me">View your reservations</Link>

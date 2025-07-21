@@ -1,8 +1,10 @@
 import {useContext} from "react";
 import { AuthContext } from "../UseContext";
+import { useNavigate } from "react-router";
 
 export default function Registration() {
-    const {register, apiMessage} = useContext(AuthContext)
+    const {register} = useContext(AuthContext)
+    const navigate = useNavigate();
     const signIn = async (formData)=>{
         const newUser = {
             firstname: formData.get("firstname"),
@@ -14,6 +16,7 @@ export default function Registration() {
     }
     return (
     <>
+    <section>
     <h1>Registration Form</h1>
     <form action = {signIn}>
         <label>First Name:
@@ -28,9 +31,10 @@ export default function Registration() {
         <label>Password:
             <input name = "password" type="password"/>
         </label>
-        <input type="submit" value="submit"/>
+        <input type="submit" value="Submit" className="submit"/>
     </form>
-    <h4>{apiMessage}</h4>
+     <button onClick={()=>navigate("/login")}>Already have an account? Login!</button>
+    </section>
     </>
     )
 };
