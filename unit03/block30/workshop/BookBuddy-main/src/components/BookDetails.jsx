@@ -50,7 +50,7 @@ export default function BookDetails() {
          <p>Author: {book.author}</p>
          <p>Available: {book.available ? "Yes":"No"}</p>
          <img className="details" src={book.coverimage} alt={book.title}/>
-         <p className="description">Description: {book.description}</p>
+         <p className="description"><b>Description:</b> {book.description}</p>
          {token && (
             <>
                 <button 
