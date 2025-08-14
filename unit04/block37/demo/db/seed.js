@@ -1,5 +1,11 @@
+
+import { faker } from '@faker-js/faker';
+// import client from "./client.js"
+// import { insertPatient } from "./queries/patients.js";
+// import { insertDoctors } from "./queries/doctors.js";
+// import { insertAppt } from "./queries/appointments.js";
+
 const client = require ('./client')
-const {faker} = require ('faker')
 const insertPatient = require ('./queries/patients')
 const insertDoctors = require ('./queries/doctors')
 const insertAppt = require ('./queries/appointments')
