@@ -4,7 +4,7 @@ import { useParams } from 'react-router'
 function ActivityList() {
   const {activityId} = useParams
   //create state that will track a single activity from the API
-  //create a useWEffect that will use the activityId to query the activity from the API
+  //create a useEffect that will use the activityId to query the activity from the API
   axios.get("URL/activities/"+activityId)
   return (
     <>
