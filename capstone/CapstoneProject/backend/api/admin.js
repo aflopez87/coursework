@@ -2,54 +2,57 @@ import express from "express";
 const router = express.Router();
 
 // Middleware imports
-import getUserFromToken from "#middleware/user_from_token"; 
-import requireUser from "#middleware/require_user";         
-import requireAdmin from "#middleware/require_admin";       
-import requireBody from "#middleware/require_body";
-import { createToken } from "#utils/jwt";
+import getUserFromToken from "../middleware/user_from_token.js"; 
+import requireUser from "../middleware/require_user.js";         
+import requireAdmin from "../middleware/require_admin.js";       
+import requireBody from "../middleware/require_body.js";
+
+// JWT utility
+// generates auth token
+import { createToken } from "../utils/jwt.js";
 
 // Users imports
 import {
   getAllUsers,
-  getUserById,
+  // getUserById,
   deleteUser,
   authenticateUser
-} from "#db/queries/users";
+} from "../db/queries/users.js";
 
 // User devices imports
 import {
   getDevicesByUserId
-} from "#db/queries/user_devices";
+} from "../db/queries/user_devices.js";
 
 // Devices imports
 import {
   getDevices,
-  getDeviceById,
+  // getDeviceById,
   updateDevice,
   deleteDevice,
   createDevice
-} from "#db/queries/devices";
+} from "../db/queries/devices.js";
 
 // Utilities imports
 import {
   getUtilities,
-  getUtilityById,
+  // getUtilityById,
   updateUtility,
   deleteUtility,
   createUtility
-} from "#db/queries/utilities";
+} from "../db/queries/utilities.js";
  
 
 // Admin Login
 router
   .route("/login")
-  .post(requireBody(["username", "password"]), async (req, res) => {
+  .post(requireBody([ "username", "password" ]), async (req, res) => {
     const { username, password } = req.body;
     const user = await authenticateUser(username, password);
     // Returns error if not a registered user or admin
     if (!user || user.role !== "admin") return res.status(403).send("Forbidden");
     const token = createToken({ id: user.id, role: user.role });
-    res.send(token);
+    res.send({token});
   });
 
 // Apply token and role check to all admin routes
@@ -98,7 +101,7 @@ router
 // Add a new verified device
 router
   .route("/devices")
-  .post(requireBody(["name", "wattage"]), async (req, res) => {
+  .post(requireBody([ "name", "wattage" ]), async (req, res) => {
     const device = await createDevice(req.body);
     res.status(201).send(device);
   });
@@ -135,7 +138,7 @@ router
 // Add new utility
 router
   .route("/utilities")
-  .post(requireBody(["name", "location", "peakRate", "offPeakRate"]), async (req, res) => {
+  .post(requireBody([ "name", "location", "peakRate", "offPeakRate" ]), async (req, res) => {
     const utility = await createUtility(req.body);
     res.status(201).send(utility);
   });

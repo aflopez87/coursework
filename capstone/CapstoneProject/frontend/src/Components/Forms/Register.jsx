@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../UseContext";
+import { AuthContext } from "../../UseContext.jsx";
 import { useNavigate } from "react-router";
 
 export default function Registration() {
@@ -16,24 +16,34 @@ export default function Registration() {
     };
     return (
     <>
-    <section>
-    <h1>New User Registration</h1>
+    <section id = "register"> 
+    <h1>Welcome!</h1>
+    <p>Fill out the information below to complete your registration.</p>
     <form action = {signIn}>
-        <label>Name:
-            <input name = "name"/>
-        </label>
-        <label>Location:
-            <input name = "location"/>
-        </label>
-        <label>Username:
-            <input name = "username"/>
-        </label>
-        <label>Password:
+        
+        <div className="register">
+            <label htmlFor="name">Name</label>
+            <input name = "name" type = "text"/>
+        </div>
+        
+        <div className="register">
+            <label htmlFor="location">Location</label>
+            <input name = "location" type = "text"/>
+        </div>
+       
+        <div className="register">
+            <label htmlFor="username">Username</label>
+            <input name = "username" type = "text"/>
+        </div>
+        
+        <div className="register">
+            <label htmlFor="password">Password</label>
             <input name = "password" type="password"/>
-        </label>
+        </div>
+        
         <input type="submit" value="Submit" className="submit"/>
     </form>
-     <button onClick={()=>navigate("/login")}>Already have an account? Login!</button>
+     <p className="linkto">Already registered? <a onClick={()=>navigate("/login")}>Login</a></p>
     </section>
     </>
     )

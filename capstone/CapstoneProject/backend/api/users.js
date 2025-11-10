@@ -3,36 +3,35 @@ import express from "express";
 const router = express.Router();
 
 // Middleware imports
-import getUserFromToken from "#middleware/user_from_token"; 
-import requireUser from "#middleware/require_user";       
-import requireBody from "#middleware/require_body";        
+import getUserFromToken from "../middleware/user_from_token.js"; 
+import requireUser from "../middleware/require_user.js";       
+import requireBody from "../middleware/require_body.js";        
 
 // JWT utility
 // generates auth token
-import { createToken } from "#utils/jwt";
+import { createToken } from "../utils/jwt.js";
 
 // User imports
 import {
   createUser,
   authenticateUser,
-  getUserById,
+  // getUserById,
   updateUser
-} from "#db/queries/users";
+} from "../db/queries/users.js";
 
 // User devices imports
 import {
   addUserDevice,
-  getAllUserDevices,
+  // getAllUserDevices,
   updateUserDevice,
-  deleteUserDevice,
-  getUserDeviceById
-} from "#db/queries/user_devices";
+  deleteUserDevice
+} from "../db/queries/user_devices.js";
 
 // User devices import
-import { getAllDevices } from "#db/queries/devices";
+import { getDevices } from "../db/queries/devices.js";
 
 // Utilities import
-import { getUtilities } from "#db/queries/utilities";
+import { getUtilities } from "../db/queries/utilities.js";
 
 // Apply token middleware to all routes
 router.use(getUserFromToken);
@@ -42,21 +41,23 @@ router
   .route("/register")
   .post(requireBody(["username", "password", "name", "location"]), async (req, res) => {
     const { username, password, name, location } = req.body;
-    const user = await createUser({username, password, name, location});
-    const token = createToken({ id: user.id });
-    res.status(201).send(token);
+    // default role for registration is user
+    const role = "user";
+    const user = await createUser({ username, password, name, location, role });
+    const token = createToken({ id: user.id, name: user.name });
+    res.status(201).send({token});
   });
 
 // Login existing user
 router
   .route("/login")
-  .post(requireBody(["username", "password"]), async (req, res) => {
+  .post(requireBody([ "username", "password" ]), async (req, res) => {
     const { username, password } = req.body;
     const user = await authenticateUser(username, password);
     // Send message if no user on file
     if (!user) return res.status(401).send("Invalid email or password");
-    const token = createToken({ id: user.id });
-    res.send(token);
+    const token = createToken({ id: user.id, name: user.name });
+    res.send({token});
   });
 
 // Get user's devices (home page)
@@ -72,7 +73,7 @@ router
   .route("/devices")
   .post(
     requireUser,
-    requireBody(["deviceId", "customDevice", "usageAlgorithm", "usageHours"]),
+    requireBody([ "deviceId", "customDevice", "usageAlgorithm", "usageHours" ]),
     async (req, res) => {
       const { deviceId, customDevice, usageAlgorithm, usageHours } = req.body;
       const userDevice = await addUserDevice(
@@ -91,7 +92,7 @@ router
   .route("/devices/:deviceId")
   .put(
     requireUser,
-    requireBody(["usageAlgorithm", "usageHours"]),
+    requireBody([ "usageAlgorithm", "usageHours" ]),
     async (req, res) => {
       const { deviceId } = req.params;
       const { usageAlgorithm, usageHours } = req.body;
@@ -120,7 +121,7 @@ router
 router
   .route("/devices/all")
   .get(requireUser, async (req, res) => {
-    const devices = await getAllDevices();
+    const devices = await getDevices();
     res.send(devices);
   });
 
@@ -131,10 +132,27 @@ router
     const utilities = await getUtilities();
     res.send(utilities);
   })
-  .post(requireUser, requireBody(["utilityId"]), async (req, res) => {
+  .post(requireUser, requireBody([ "utilityId" ]), async (req, res) => {
     const { utilityId } = req.body;
     const updatedUser = await updateUser(req.user.id, { utilityId });
     res.send(updatedUser);
   });
+
+// Pubic routes to view user page, devices, and utilities
+// Public route for user devices
+router
+  .route("/devices/public")
+  .get(async (req,res) =>{
+    const devices = await getDevices();
+    res.send(devices);
+  });
+
+// public route for utilities
+router
+  .route("/utilities/public")
+  .get(async (req,res) =>{
+    const utilities = await getUtilities();
+    res.send(utilities);
+});
 
 export default router;

@@ -1,32 +1,39 @@
 import { useContext } from "react";
-import { AuthContext } from "../UseContext";
+import { AuthContext } from "../../UseContext.jsx";
 import { useNavigate } from "react-router";
+import './Forms.css'
+
 
 export default function Login() {
     const {login} = useContext(AuthContext)
     const navigate = useNavigate();
     const signIn = async (formData)=>{
         const user = {
-            email:formData.get("email"),
+            username:formData.get("username"),
             password:formData.get("password")
         }
+        console.log(user);
         await login(user)
-        navigate("/")
+        navigate("/home")
     }
     return (
     <>
-    <section>
-         <h1>Login Form</h1>
+    <section id = "login">
+         <h1>Welcome back!</h1>
     <form action = {signIn}>
-        <label>Email:
-            <input name = "email"/>
-        </label>
-        <label>Password:
+        <div className="login">
+            <label htmlFor="username">Username</label>
+            <input name = "username" type="text"/>
+        </div>
+        
+        <div className="login">
+            <label htmlFor="password">Password</label>
             <input name = "password" type="password"/>
-        </label>
+        </div>
+        
         <input type="submit" value="Submit" className="submit"/>
     </form>
-    <button onClick={()=>navigate("/register")}>Create a new Account</button>
+    <p className="linkto">Not registered?<a onClick={()=>navigate("/register")}> Register here.</a></p>
     </section>
     </>
     )

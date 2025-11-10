@@ -1,18 +1,21 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import jwtDecode from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode"; 
 
-const AuthContext = React.createContext()
+export const AuthContext = React.createContext()
 
-const AuthProvider = ({ children })=>{
+export const AuthProvider = ({ children })=>{
     const [user, setUser] = useState(null)
     // saves token locally
-    const [token, setToken] = useState(localStorage.getItem("token") || "")
+    const [token, setToken] = useState(() =>{
+        const stored = localStorage.getItem("token");
+        return stored && stored.split(".").length === 3 ? stored : null;
+    })
     const [apiMessage, setApiMessage] = useState("Success!")
 
     //  Decode token on mount if it exists
     useEffect(() => {
-        if (token) {
+        if (token && token.split(".").length === 3) {
             try{
                 const decoded = jwtDecode(token);
                 setUser(decoded);
@@ -21,17 +24,24 @@ const AuthProvider = ({ children })=>{
                 localStorage.removeItem("token");
                 setToken("");
             }
+        }else{
+            console.warn("Malformed token", token);
+            localStorage.removeItem("token");
+            setToken("");
         }
     }, [token]);
 
     // Post/Create need the URL, the resource to post/create, and the headers to set the content type
     const login = async (user)=>{
         try{
-            const response = await axios.post('https://localhost:3000/users/login', user,{
+            const response = await axios.post('http://localhost:3000/api/users/login', user,{
                 headers:{
                     "Content-Type":"application/json"
                 }
             });
+
+            console.log("Received token:", response.data.token)
+
             setToken(response.data.token)
             // saves token locally
             localStorage.setItem("token", response.data.token)
@@ -43,7 +53,7 @@ const AuthProvider = ({ children })=>{
 
     const register = async (newUser)=>{
         try{
-            const response = await axios.post('https://localhost:3000/users/register', newUser,{
+            const response = await axios.post('http://localhost:3000/api/users/register', newUser,{
                 headers:{
                     "Content-Type":"application/json"
                 }
@@ -64,10 +74,9 @@ const AuthProvider = ({ children })=>{
     }
 
     return(
-    <AuthContext.Provider value = {{ user, token, login, register, logout, apiMessage, setUser }}>
+    <AuthContext.Provider value = {{ user, token, setToken, login, register, logout, apiMessage, setUser }}>
         {children}
     </AuthContext.Provider>
     );
 };
 
-export {AuthContext, AuthProvider};
